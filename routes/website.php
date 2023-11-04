@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,16 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([
-    'as' => 'admin.',
-    'prefix' => 'admin'
-
-], function () {
-    Route::get('/',
-        [
-            BackendController::class,
-            'index'
-        ])
-        ->name('admin');
-});
-
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [FrontendController::class,'index']);
+})->name('dashboard');
